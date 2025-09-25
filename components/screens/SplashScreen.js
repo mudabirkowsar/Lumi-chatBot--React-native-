@@ -20,9 +20,8 @@ export default function SplashScreen({ navigation }) {
       }),
     ]).start()
 
-    // Navigate after 2.5s
     const timer = setTimeout(() => {
-      navigation.navigate("DrawerScreen")
+      navigation.replace("DrawerScreen")
     }, 2500)
 
     return () => clearTimeout(timer)

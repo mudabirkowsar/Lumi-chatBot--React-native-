@@ -5,6 +5,7 @@ import HomeScreen from '../home/HomeScreen'
 import HistoryScreen from '../home/HistoryScreen'
 import { Ionicons } from '@expo/vector-icons'
 import LinearGradient from 'react-native-linear-gradient'
+import NewChatScreen from '../home/NewChatScreen'
 
 const Drawer = createDrawerNavigator()
 
@@ -61,6 +62,18 @@ export default function DrawerNavigation() {
                     drawerIcon: ({ color }) => <Ionicons name="chatbubble-outline" size={22} color={color} />,
                 }}
             />
+            
+            <Drawer.Screen
+                name="NewChat"
+                component={NewChatScreen}
+                options={{
+                    title: "New Chat",
+                    drawerIcon: ({ color, size }) => (
+                        <Ionicons name="add-circle-outline" size={size || 22} color={color} />
+                    ),
+                }}
+            />
+
             <Drawer.Screen
                 name="HistoryScreen"
                 component={HistoryScreen}
