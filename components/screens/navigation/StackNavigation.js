@@ -1,13 +1,21 @@
-import { View, Text } from 'react-native'
 import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import SplashScreen from '../SplashScreen'
+import HomeScreen from '../home/HomeScreen'
+import DrawerNavigation from './DrawerNavigation'
 
 const Stack = createNativeStackNavigator()
+
 export default function StackNavigation() {
-  return (
-    <Stack.Navigator>
-        <Stack.Screen name='SplashScreen' component={SplashScreen} />
-    </Stack.Navigator>
-  )
+
+    return (
+        <Stack.Navigator initialRouteName='SplashScreen'
+        screenOptions={{
+            headerShown: false
+        }}
+        >
+            <Stack.Screen name='SplashScreen' component={SplashScreen} />
+            <Stack.Screen name='DrawerScreen' component={DrawerNavigation} />
+        </Stack.Navigator>
+    )
 }
