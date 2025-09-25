@@ -1,17 +1,61 @@
-import { View, Text } from 'react-native'
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
+import { View, Text, Image, StyleSheet, Animated } from 'react-native'
 
 export default function SplashScreen({ navigation }) {
+  const scaleAnim = useRef(new Animated.Value(0.5)).current // for zoom
+  const opacityAnim = useRef(new Animated.Value(0)).current // for fade
 
-    useEffect(() => {
-        setTimeout(() => {
-            navigation.navigate("DrawerScreen");
-        }, 2000);
-    }, [])
+  useEffect(() => {
+    // Run animation when screen loads
+    Animated.parallel([
+      Animated.timing(scaleAnim, {
+        toValue: 1,
+        duration: 1500,
+        useNativeDriver: true,
+      }),
+      Animated.timing(opacityAnim, {
+        toValue: 1,
+        duration: 1500,
+        useNativeDriver: true,
+      }),
+    ]).start()
 
-    return (
-        <View>
-            <Text>SplashScreen</Text>
-        </View>
-    )
+    // Navigate after 2.5s
+    const timer = setTimeout(() => {
+      navigation.navigate("DrawerScreen")
+    }, 2500)
+
+    return () => clearTimeout(timer)
+  }, [])
+
+  return (
+    <View style={styles.container}>
+      {/* Animated Image */}
+      <Animated.Image
+        source={require('../../assets/splashScreen.png')}
+        style={[
+          styles.logo,
+          {
+            transform: [{ scale: scaleAnim }],
+            opacity: opacityAnim,
+          },
+        ]}
+        resizeMode="contain"
+      />
+    </View>
+  )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fff', // plain white background
+  },
+  logo: {
+    width: 160,
+    height: 160,
+    marginBottom: 20,
+  },
+})
