@@ -62,7 +62,7 @@ export default function DrawerNavigation() {
                     drawerIcon: ({ color }) => <Ionicons name="chatbubble-outline" size={22} color={color} />,
                 }}
             />
-            
+
             <Drawer.Screen
                 name="NewChat"
                 component={NewChatScreen}
