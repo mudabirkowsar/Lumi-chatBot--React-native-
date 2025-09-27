@@ -21,7 +21,7 @@ export default function SplashScreen({ navigation }) {
     ]).start()
 
     const timer = setTimeout(() => {
-      navigation.replace("DrawerScreen")
+      navigation.replace("LoginScreen")
     }, 2500)
 
     return () => clearTimeout(timer)
