@@ -31,7 +31,7 @@ function CustomDrawerContent(props) {
             <View style={styles.footerContainer}>
                 <TouchableOpacity style={styles.logoutButton} activeOpacity={0.7}>
                     <Ionicons name="log-out-outline" size={22} color="#fff" />
-                    <Text style={styles.logoutText}>Profile</Text>
+                    <Text style={styles.logoutText}>Logout</Text>
                 </TouchableOpacity>
             </View>
         </DrawerContentScrollView>
